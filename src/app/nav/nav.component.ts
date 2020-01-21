@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
 import { LoginComponent } from '../login/login.component';
@@ -13,7 +13,12 @@ import { throwError } from 'rxjs';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private _authService: AuthService) { }
+  constructor(private _authService: AuthService,
+    private login: LoginComponent ) { }
+
+  logout() {
+    this._authService.logout();
+  }
 
   ngOnInit() {
   }

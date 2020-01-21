@@ -4,11 +4,11 @@
   <div *ngIf="!_authService.token">
     <div class="col-sm-4">
       <h2>Log In</h2>
-      <label>Email:</label><br />
+      <label class="pt-3">Email:</label><br />
       <input class="form-control" type="text" name="login-email" [(ngModel)]="user.email">
       <span *ngFor="let error of _authService.errors.email"><br />
       {{ error }}</span>
-      <label>Password:</label><br />
+      <label class="pt-3">Password:</label><br />
       <input class="form-control" type="password" name="login-password" [(ngModel)]="user.password">
       <span *ngFor="let error of _authService.errors.password"><br />
       {{ error }}</span>
