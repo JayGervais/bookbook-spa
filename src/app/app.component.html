@@ -11,7 +11,7 @@
         <span *ngFor="let error of _authService.errors.email"><br />
         {{ error }}</span>
         <label>Password:</label><br />
-        <input class="form-control" type="password" name="login-password" [(ngModel)]="auth.password">
+        <input class="form-control" type="password" name="login-password" [(ngModel)]="user.password">
         <span *ngFor="let error of _authService.errors.password"><br />
         {{ error }}</span>
       </div>
