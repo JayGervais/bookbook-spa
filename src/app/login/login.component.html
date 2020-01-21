@@ -1,0 +1,31 @@
+<!-- Page Content -->
+<div class="container pt-5 pb-5">
+
+  <div *ngIf="!_authService.token">
+    <div class="col-sm-4">
+      <h2>Log In</h2>
+      <label>Email:</label><br />
+      <input class="form-control" type="text" name="login-email" [(ngModel)]="user.email">
+      <span *ngFor="let error of _authService.errors.email"><br />
+      {{ error }}</span>
+      <label>Password:</label><br />
+      <input class="form-control" type="password" name="login-password" [(ngModel)]="user.password">
+      <span *ngFor="let error of _authService.errors.password"><br />
+      {{ error }}</span>
+    </div>
+    <div class="col-sm-4">
+      <button (click)="login()" class="btn btn-primary mt-3">Log In</button>
+    </div>
+    <div class="col-sm-12">
+      <span *ngFor="let error of _authService.errors.non_field_errors">{{ error }}<br /></span>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="_authService.token">
+    <div class="col-sm-12">
+      <p>Welcome back, {{ _authService.email }}.</p>
+      <button (click)="logout()" class="btn btn-primary">Log Out</button>
+    </div>
+  </div>
+
+</div>

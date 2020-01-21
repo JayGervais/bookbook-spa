@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from '../_services/auth.service';
+import { User } from '../_models/user';
+import { LoginComponent } from '../login/login.component';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -7,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit() {
   }

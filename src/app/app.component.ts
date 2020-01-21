@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './_services/auth.service';
-import { User } from './_models/user'
+import { User } from './_models/user';
 import { throwError } from 'rxjs';
 
 @Component({
@@ -10,29 +12,8 @@ import { throwError } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  /**
-   * Authentication User
-   */
-  public user: any;
-
-  constructor(private _authService: AuthService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.user = {
-      email: '',
-      password: ''
-    };
-  }
-
-  login() {
-    this._authService.login({'email': this.user.email, 'password': this.user.password});
-  }
-
-  refreshToken() {
-    this._authService.refreshToken();
-  }
-
-  logout() {
-    this._authService.logout();
   }
 }
