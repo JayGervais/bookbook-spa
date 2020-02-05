@@ -25,7 +25,9 @@ export class UserComponent implements OnInit {
 
   create() {
     this._authService.create(this.user).subscribe((data: {}) => {
-      this.router.navigate(['/login'])
+      //this.router.navigate(['/login'])
+      this._authService.login({'email': this.user.email, 'password': this.user.password});
+      this.router.navigate(['/'])
     })
   }
 
