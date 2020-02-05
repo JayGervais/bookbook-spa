@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from '../_models/user';
 import { LoginComponent } from '../login/login.component';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  baseURL = environment.apiUrl;
 
   // http options used for making API calls
   private httpOptions: any;
@@ -19,6 +23,10 @@ export class AuthService {
 
   // the username of the logged in user
   public email: string;
+  public name: string;
+
+  response: any;
+  postdata: User;
 
   // error messages received from the login attempt
   public errors: any = [];
@@ -31,7 +39,7 @@ export class AuthService {
 
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
   public login(user) {
-    this.http.post('http://127.0.0.1:8000/api/user/api-token-auth/', JSON.stringify(user), this.httpOptions).subscribe(
+    this.http.post(this.baseURL + 'user/api-token-auth/', JSON.stringify(user), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
       },
@@ -43,7 +51,7 @@ export class AuthService {
 
   // Refreshes the JWT token, to extend the time the user is logged in
   public refreshToken() {
-    this.http.post('http://127.0.0.1:8000/api/user/api-token-refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
+    this.http.post(this.baseURL + 'user/api-token-refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
       },
@@ -69,4 +77,29 @@ export class AuthService {
     this.token_expires = new Date(token_decoded.exp * 1000);
     this.email = token_decoded.email;
   }
+
+
+  // create account
+  public create(user) {
+    return this.http.post(this.baseURL + 'user/create/', JSON.stringify(user), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // Error handling
+  handleError(error) {
+     let errorMessage = '';
+     if(error.error instanceof ErrorEvent) {
+       // Get client-side error
+       errorMessage = error.error.message;
+     } else {
+       // Get server-side error
+       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+     }
+     window.alert(errorMessage);
+     return throwError(errorMessage);
+  }
+
 }

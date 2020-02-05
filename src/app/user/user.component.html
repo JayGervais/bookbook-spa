@@ -1,0 +1,27 @@
+<!-- Page Content -->
+<div class="container pt-5 pb-5">
+
+    <div class="col-sm-4">
+      <h2>Create an Account</h2>
+
+      <label class="pt-3">Name:</label><br />
+      <input class="form-control" type="text" name="name" [(ngModel)]="user.name">
+
+      <label class="pt-3">Email:</label><br />
+      <input class="form-control" type="text" name="email" [(ngModel)]="user.email">
+
+      <label class="pt-3">Password:</label><br />
+      <input class="form-control" type="password" name="password" [(ngModel)]="user.password">
+
+      <!-- <label class="pt-3">Password (Again):</label><br />
+      <input class="form-control" type="password" name="password2" [(ngModel)]="user.password2"> -->
+
+    </div>
+    <div class="col-sm-4">
+      <button (click)="create()" class="btn btn-primary mt-3">Create</button>
+    </div>
+    <div class="col-sm-12">
+      <span *ngFor="let error of _authService.errors.non_field_errors">{{ error }}<br /></span>
+    </div>
+
+  </div>

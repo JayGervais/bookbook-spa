@@ -12,6 +12,7 @@ import { User } from './_models/user';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { NavComponent } from './nav/nav.component';
     AppComponent,
     NavComponent,
     LoginComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

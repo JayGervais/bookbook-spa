@@ -36,4 +36,8 @@ export class LoginComponent implements OnInit {
     this._authService.logout();
   }
 
+  create() {
+    this._authService.create({'name': this.user.name, 'email': this.user.email, 'password': this.user.password});
+  }
+
 }

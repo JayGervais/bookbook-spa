@@ -19,6 +19,9 @@
     <div class="col-sm-12">
       <span *ngFor="let error of _authService.errors.non_field_errors">{{ error }}<br /></span>
     </div>
+    <div class="pt-5">
+      <a class="nav-link" [routerLink]="['/user']">Don't have an account? Create one here.</a>
+    </div>
   </div>
 
   <div class="row" *ngIf="_authService.token">
