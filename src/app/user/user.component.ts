@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserComponent implements OnInit {
 
-  @Input() user = { email: '', password: '', name: '' }
+  @Input() user = { email: '', password: '', password2: '',name: '' }
 
   constructor(
     private _authService: AuthService,

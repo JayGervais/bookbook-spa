@@ -26,7 +26,7 @@
 
   <div class="row" *ngIf="_authService.token">
     <div class="col-sm-12">
-      <p>Welcome back, {{ _authService.email }}.</p>
+      <p>Welcome back, {{ _authService.name }}.</p>
       <button (click)="logout()" class="btn btn-primary">Log Out</button>
     </div>
   </div>
